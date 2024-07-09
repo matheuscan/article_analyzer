@@ -15,6 +15,6 @@ if __name__ == '__main__':
     for file in dirContent:
         if file.endswith(".txt"):
             txtFile = file
-            p = Process(target=processFile, args=txtFile)
+            p = Process(target=processFile, args=(txtFile,))
             p.start()
             p.join()
