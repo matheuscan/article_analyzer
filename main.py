@@ -1,14 +1,19 @@
 from multiprocessing import Process
 import os
-import re
+import sqlite3
+
+db = sqlite3.connect('test.db')
+cursor = db.cursor()
 
 
+stopwords = ['and', 'or', 'in', 'on', 'an', 'a', 'the', 'the', 'The','this', 'This','those','to', 'To','If','if']
 def processFile(file):
-    with open(file) as f:
-
-        for token in f.readline():
-            if token != "and":
-                print(token)
+    file = open(file)
+    for line in file:
+        words = line.split(" ")
+        for word in words:
+            if word not in stopwords:
+                print(word)
 
 if __name__ == '__main__':
     dirContent = os.listdir('./')
